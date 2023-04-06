@@ -40,43 +40,43 @@ The boxes may come in any order.
 The boxes are not always squares, they could be rectangles.
 */
 
-function fitsInOneBox(boxes) {
-  boxes.sort((a, b) => (a.l > b.l ? 1 : -1));
+function fitsInOneBox (boxes) {
+  boxes.sort((a, b) => (a.l > b.l ? 1 : -1))
 
-  for (let i = 0; i < boxes.length; i++)
+  for (let i = 0; i < boxes.length; i++) {
     for (let j = i + 1; j < boxes.length; j++) {
-      const box1L = boxes[i].l;
-      const box1W = boxes[i].w;
-      const box1H = boxes[i].h;
-      const box2L = boxes[j].l;
-      const box2W = boxes[j].w;
-      const box2H = boxes[j].h;
-      if (!Boolean(box1L < box2L && box1W < box2W && box1H < box2H))
-        return false;
+      const box1L = boxes[i].l
+      const box1W = boxes[i].w
+      const box1H = boxes[i].h
+      const box2L = boxes[j].l
+      const box2W = boxes[j].w
+      const box2H = boxes[j].h
+      if (!(box1L < box2L && box1W < box2W && box1H < box2H)) { return false }
     }
+  }
 
-  return true;
+  return true
 }
 
 console.log(
   fitsInOneBox([
     { l: 1, w: 1, h: 10 },
     { l: 3, w: 3, h: 12 },
-    { l: 2, w: 2, h: 1 },
+    { l: 2, w: 2, h: 1 }
   ])
-); // false
+) // false
+
+console.log(
+  fitsInOneBox([
+    { l: 1, w: 1, h: 1 },
+    { l: 2, w: 2, h: 2 }
+  ])
+) // true
 
 console.log(
   fitsInOneBox([
     { l: 1, w: 1, h: 1 },
     { l: 2, w: 2, h: 2 },
-  ])
-); // true
-
-console.log(
-  fitsInOneBox([
-    { l: 1, w: 1, h: 1 },
-    { l: 2, w: 2, h: 2 },
-    { l: 2, w: 10, h: 2 },
+    { l: 2, w: 10, h: 2 }
   ]) // false
-);
+)
