@@ -28,10 +28,9 @@ If there is more than one gift to replenish, the function must return an Array w
 
 function getGiftsToRefill (a1, a2, a3) {
   const gifts = [...new Set(a1), ...new Set(a2), ...new Set(a3)]
-  const giftsNeeded = gifts.filter(
-    (v, i) => gifts.indexOf(v) === i && gifts.lastIndexOf(v) === i
+  return gifts.filter(
+    (v) => gifts.indexOf(v) === gifts.lastIndexOf(v)
   )
-  return giftsNeeded
 }
 
 const a1 = ['bike', 'car', 'bike', 'bike']

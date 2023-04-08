@@ -17,14 +17,14 @@ The gifts pack can't be splitted.
 Gifts and reindeers' names length will always be greater than 0.
 */
 
-function distributeGifts(packOfGifts, reindeers) {
-  const packWeight = packOfGifts.join("").length;
-  const reindeersCanCarry = reindeers.join("").length * 2;
+function distributeGifts (packOfGifts, reindeers) {
+  const packWeight = packOfGifts.join('').length
+  const reindeersCanCarry = reindeers.join('').length * 2
 
-  return Math.floor(reindeersCanCarry / packWeight);
+  return Math.floor(reindeersCanCarry / packWeight)
 }
 
-const packOfGifts = ["book", "doll", "ball"];
-const reindeers = ["dasher", "dancer"];
+const packOfGifts = ['book', 'doll', 'ball']
+const reindeers = ['dasher', 'dancer']
 
-console.log(distributeGifts(packOfGifts, reindeers));
+console.log(distributeGifts(packOfGifts, reindeers))
