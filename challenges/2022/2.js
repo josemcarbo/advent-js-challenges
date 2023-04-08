@@ -22,18 +22,28 @@ Although the holiday is December 31, the extra hours will be done the same year.
 Date.getDay() method returns the day of the week of a date. 0 is Sunday, 1 is Monday, etc.
 */
 
-function countHours(year, holidays) {
-  let count = 0;
+function countHours (year, holidays) {
+  let hours = 0
+  const dictionary = {
+    0: 0,
+    1: 2,
+    2: 2,
+    3: 2,
+    4: 2,
+    5: 2,
+    6: 0
 
-  for (let i = 0; i < holidays.length; i++) {
-    const date = new Date(`${year}/${holidays[i]}`);
-    const day = date.getDay();
-
-    if (day !== 0 && day !== 6) {
-      count += 2;
-    }
   }
-  return count;
+  holidays.map((v) => {
+    const date = new Date(`${year}/${v}`)
+    const day = date.getDay()
+
+    hours += dictionary[day]
+
+    return v
+  })
+
+  return hours
 }
 
-console.log(countHours(2022, ["01/06", "04/01", "12/25"]));
+console.log(countHours(2022, ['01/06', '04/01', '12/25']))

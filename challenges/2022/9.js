@@ -43,11 +43,11 @@ function countTime (leds) {
 
   while (leds.some((led) => !led)) {
     const step = leds.slice()
-
-    for (let i = 0; i < leds.length; i++) {
+    leds.map((v, i) => {
       leds[i] = leds[i] ||
         (i === 0 ? step[step.length - 1] : step[i - 1])
-    }
+      return v
+    })
 
     second += 7
   }

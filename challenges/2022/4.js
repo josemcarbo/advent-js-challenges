@@ -41,28 +41,27 @@ The boxes are not always squares, they could be rectangles.
 */
 
 function fitsInOneBox (boxes) {
-  boxes.sort((a, b) => (a.l > b.l ? 1 : -1))
+  let status = 0
 
-  for (let i = 0; i < boxes.length; i++) {
-    for (let j = i + 1; j < boxes.length; j++) {
-      const box1L = boxes[i].l
-      const box1W = boxes[i].w
-      const box1H = boxes[i].h
-      const box2L = boxes[j].l
-      const box2W = boxes[j].w
-      const box2H = boxes[j].h
-      if (!(box1L < box2L && box1W < box2W && box1H < box2H)) { return false }
-    }
-  }
+  let prev = boxes
+    .sort((a, b) => (a.l > b.l ? 1 : -1))
+    .shift()
 
-  return true
+  boxes.map(curr => {
+    status += curr.l > prev.l && curr.w > prev.w && curr.h > prev.h
+    prev = curr
+
+    return curr
+  })
+
+  return status === boxes.length
 }
 
 console.log(
   fitsInOneBox([
     { l: 1, w: 1, h: 10 },
-    { l: 3, w: 3, h: 12 },
-    { l: 2, w: 2, h: 1 }
+    { l: 2, w: 2, h: 1 },
+    { l: 3, w: 3, h: 12 }
   ])
 ) // false
 
@@ -73,10 +72,10 @@ console.log(
   ])
 ) // true
 
-console.log(
-  fitsInOneBox([
-    { l: 1, w: 1, h: 1 },
-    { l: 2, w: 2, h: 2 },
-    { l: 2, w: 10, h: 2 }
-  ]) // false
-)
+// console.log(
+//   fitsInOneBox([
+//     { l: 1, w: 1, h: 1 },
+//     { l: 2, w: 2, h: 2 },
+//     { l: 2, w: 10, h: 2 }
+//   ]) // false
+// )

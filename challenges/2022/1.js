@@ -23,13 +23,17 @@ Watch out! Make sure you put the right number of * symbols to wrap completely th
 Ah, and do not mutate the original array!
 */
 
-function wrapping(gifts) {
-  return gifts.map((gift) => {
-    const paper = gift.replace(/./g, "*") + "**";
-    return paper + "\n*" + gift + "*\n" + paper;
-  });
-}
+function wrapping (gifts) {
+  return gifts
+    .map((gift) => {
+      const paper = Array(gift.length + 2).fill('*').join('')
 
-console.log(wrapping(["cat", "game", "socks"]));
-console.log(wrapping(["midu"]));
-console.log(wrapping(["a"]));
+      return `${paper}\n*${gift}*\n${paper}`
+    })
+}
+// a
+// '***\n*a*\n***'
+
+// console.log(wrapping(['cat', 'game', 'socks']))
+console.log(wrapping(['a']))
+// console.log(wrapping(['a']))
